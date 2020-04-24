@@ -9,8 +9,9 @@ export class CurrencyService {
         jsonifiedResponse = false;
       }
       return jsonifiedResponse;
-    } catch {
-      return false;
+    } 
+    catch (error) {
+      return error;
     }
   }
 }
