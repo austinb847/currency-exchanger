@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <title>Currency Exchanger</title>
+  </head>
+  <body>
+    <div class="container">
+      <form id="exchangeForm">
+        <div class="title">
+          <h2>Currency Exchanger</h2>
+        </div>
+        <div class="form-group">
+          <label for="baseCurrency" class="label-header">Choose Your Currency</label>
+          <select class="form-control" id="baseCurrency">
+            <option value="USD">USD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="converTo" class="label-header">Convert to</label>
+          <select class="form-control" id="convertTo">
+            <option value="EUR">EUR</option>
+            <option value="AUD">AUD</option>
+            <option value="BGN">BGN</option>
+            <option value="CAD">CAD</option>
+            <option value="CHF">CHF</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <div class="itemPanel">
+        <div class="title">
+          <h2>Calculated Currency</h2>
+        </div>
+        <div id="result">   
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
