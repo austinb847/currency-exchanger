@@ -9,8 +9,6 @@ import { CurrencyService } from './currency-service.js';
 $(document).ready(function() {
 
   const DOMSelectors = {
-    baseCurrency: $("#baseCurrency :selected"),
-    convertTo: $("#convertTo :selected"),
     userAmount: $("#userAmount"),
     form: $("#exchangeForm"),
     panel: $(".itemPanel"),
@@ -21,9 +19,9 @@ $(document).ready(function() {
 
   $(DOMSelectors.form).submit(function(event) {
     event.preventDefault();
-    let baseCurrency = DOMSelectors.baseCurrency.val();
-    let convertTo = DOMSelectors.convertTo.val();
-    let userAmount = DOMSelectors.userAmount.val();
+    let baseCurrency = $("#baseCurrency :selected").val();
+    let convertTo = $("#convertTo :selected").val();
+    let userAmount = parseInt(DOMSelectors.userAmount.val());
 
     (async () => {
       let currencyService = new CurrencyService();
