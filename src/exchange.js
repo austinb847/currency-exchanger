@@ -5,7 +5,11 @@ export class Exchange {
   }
 
   calculate() {
-    return this.baseVal * this.excRate;
+    return this.roundNum(this.baseVal * this.excRate);
+  }
+
+  roundNum(num) {
+    return Math.round(num * 10) / 10;
   }
 
 }
