@@ -30,28 +30,40 @@ $(document).ready(function() {
     })();
 
     function getElements(response) {
-      if(response) {
-        let conversionRate = response.conversion_rates[convertTo];
-        let exchange = new Exchange(userAmount, conversionRate);
-        let calcRate = exchange.calculate();
-        showContent(calcRate);
-      } else {
-        showContent(false);
+      const { result, conversion_rates } = response;
+      
+      if(result === 'error') {
+        return showError(response);
+      } else if (!(convertTo in conversion_rates)) {
+        // handle error
+        return showError({ error: 'unknown-code' });
       }
+      
+      let conversionRate = conversion_rates[convertTo];
+      let exchange = new Exchange(userAmount, conversionRate);
+      let calcRate = exchange.calculate();
+      showContent(calcRate);
+    }
+    
+    function showError(response) {
+      const { error } = response;
+      
+      let errMessage;
+      switch (error) {
+      case 'unknown-code':
+        errMessage = 'That currency is not currently supported.';
+      }
+      
+      DOMSelectors.result.text(errMessage);
+      DOMSelectors.form.hide();
+      DOMSelectors.panel.show();
     }
 
     function showContent(calculatedRate) {
       DOMSelectors.form.hide();
       DOMSelectors.panel.show();
-      if(calculatedRate) {
-        DOMSelectors.result.text(`Your calculated rate is ${calculatedRate}`);
-      } else {
-        DOMSelectors.result.text("There was an error handling your request.");
-      }
+      DOMSelectors.result.text(`Your calculated rate is ${calculatedRate}`);
+      
     }
-
-
   });
-
-
 });
